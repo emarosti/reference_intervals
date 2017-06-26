@@ -51,25 +51,26 @@ server <- function(input, output) {
     setkey(refrang_table, `Test Name`)
     test_ranges <- refrang_table[.(input$testname)]
     
-    ggplot(test_ranges, aes(x = `Age group`, ymin = `Low CU`, ymax = `High CU`, group = var, color = var_desc)) +
+    ggplot(test_ranges, aes(x = `Age group`, ymin = `Low CU`, ymax = `High CU`, group = Gender, color = Gender)) +
       geom_errorbar(width = 0.2,
                     position = position_dodge(.5)) +
-      labs(title = "Age Group")
+      ylab(test_ranges$`Test Name`[[1]]) #set y axis to the name of the test
+      #labs(#title = "Age group")
   })
-  #Plots - Gender
-  output$gender <- renderPlot({
-    refrang_table <- filter(refrang_table, `Unit Type` == input$units)
-    #convert to data.table format
-    refrang_table <- data.table(ref_ranges)
-    #set the keys to enable fast look ups
-    setkey(refrang_table, `Test Name`)
-    test_ranges <- refrang_table[.(input$testname)]
-    
-    ggplot(test_ranges, aes(x = `Gender`, ymin = `Low CU`, ymax = `High CU`, group = var, color = var_desc)) +
-      geom_errorbar(width = 0.2,
-                    position = position_dodge(.5)) +
-      labs(title = "Gender")
-  })
+  # #Plots - Gender
+  # output$gender <- renderPlot({
+  #   refrang_table <- filter(refrang_table, `Unit Type` == input$units)
+  #   #convert to data.table format
+  #   refrang_table <- data.table(ref_ranges)
+  #   #set the keys to enable fast look ups
+  #   setkey(refrang_table, `Test Name`)
+  #   test_ranges <- refrang_table[.(input$testname)]
+  #   
+  #   ggplot(test_ranges, aes(x = `Gender`, ymin = `Low CU`, ymax = `High CU`, group = `Age group`, color = `Age group`)) +
+  #     geom_errorbar(width = 0.2,
+  #                   position = position_dodge(.5)) +
+  #     labs(title = "Gender")
+  # })
   #Table
   output$table <- renderDataTable({
     test_ranges <- refrang_table[.(input$testname)]

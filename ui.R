@@ -54,8 +54,8 @@ ui <- fluidPage(
       h4("Plots"),
       fluidRow(plotOutput(outputId = "age_group")),
       br(),
-      fluidRow(plotOutput(outputId = "gender")),
-      br(),
+      # fluidRow(plotOutput(outputId = "gender")),
+      # br(),
       h4("Table"),
       fluidRow(dataTableOutput(outputId = "table"))
     )
