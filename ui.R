@@ -17,6 +17,7 @@ ref_ranges <- read_csv(file="nhanes_Lab_Reference_Ranges.csv")
 keys <- ref_ranges[["var_desc"]] %>%
   unique()
 keys <- setNames(keys, keys)
+keys
 
 # Encoding(ref_ranges[["Test Name"]]) <- "UTF-8"
 # iconv(ref_ranges[["Test Name"]], "UTF-8", "UTF-8",sub='') ## replace any non UTF-8 by ''
@@ -40,7 +41,12 @@ ui <- fluidPage(
                    ),
       selectInput(inputId = "testname",
                   label = "Test",
-                  choices = keys #c("Albumin" = "Albumin", "Calcitonin" = "Calcitonin")
+                  choices = c("Albumin" = "Albumin", 
+                              "Apolipoprotein B" = "Apolipoprotein B",
+                              "Cholesterol" = "Cholesterol",
+                              "Hemoglobin (Hb)" = "Hemoglobin (Hb)",
+                              "Creatinine" = "Creatinine",
+                              "Glucose, Fasting" = "Glucose, Fasting") #keys
                   )
     ),
     #Main Panel
