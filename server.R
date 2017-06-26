@@ -3,15 +3,7 @@
 # Friday June 23, 2017
 # Last Updated: June 23, 2017
 # server
-#TO DO: write function to filter out non numeric values from the df (as.numeric)
-#make a slide to show isseus with data
-#look at stedman's and merck manuals
-#  take 10 things from the manual and check to make sure they were accurately written in excel
-#  lack of interaction between gender and age - is it ambiguous in the manuals?
-#METHODS
-# extending reference ranges
-# r and shiny
-# statistical test used to analyze it
+
 
 
 #SETUP

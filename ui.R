@@ -30,6 +30,8 @@ ui <- fluidPage(
   #Title
   titlePanel(h1("Published Reference Intervals")),
   h4(em("Sources: Stedman's and Merck Manual")),
+  p("Notes: removed data where Unit Type was '-', only using CU for graphing data, radio buttons not functioning,
+    not all tests shown (UTF error), only CU RIs in table (no SIU RIs)"),
 
   #Layout
   sidebarLayout(
@@ -51,7 +53,7 @@ ui <- fluidPage(
     ),
     #Main Panel
     mainPanel(
-      h4("Plots"),
+      h4("Plot"),
       fluidRow(plotOutput(outputId = "age_group")),
       br(),
       # fluidRow(plotOutput(outputId = "gender")),
@@ -62,7 +64,7 @@ ui <- fluidPage(
   ),
 
   #Signature
-  h6(em("Created by Eliana Marostica. Last Updated: June 23, 2017"))
+  h6(em("Created by Eliana Marostica. Last Updated: June 26, 2017"))
   )
 
 
