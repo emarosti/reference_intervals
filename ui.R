@@ -68,4 +68,4 @@ ui <- fluidPage(
   h6(HTML('<p><i>Last Updated: August 4, 2017</i> | <a href="https://github.com/emarosti/reference_intervals">GitHub Repository</a>'))
   )
 
-
+#end

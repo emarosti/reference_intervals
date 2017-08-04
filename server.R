@@ -18,7 +18,6 @@ load(str_c(getwd(), "quantiles.Rdata", sep = "/"))
 quantiles <- data.table(quantiles)
 setkey(quantiles, variable)
 
-
 #SERVER
 server <- function(input, output) {
   
@@ -234,10 +233,4 @@ server <- function(input, output) {
   )
   
 }
-
-
-
-
-
-
-
+#end
