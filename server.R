@@ -12,11 +12,16 @@ library(survey)
 library(stringr)
 library(ggthemes)
 
+#DATA SETUP
+
+load(str_c(getwd(), "steds_mercks.Rdata", sep = "/"))
+
 #SURVEY SETUP
 
 load(str_c(getwd(), "quantiles.Rdata", sep = "/"))
 quantiles <- data.table(quantiles)
 setkey(quantiles, variable)
+
 
 #SERVER
 server <- function(input, output) {
@@ -41,16 +46,16 @@ server <- function(input, output) {
                nrow(filter(by_TN, Gender != '-')),
                0)
     stedmans <- c(nrow(steds),
-               nrow(filter(steds, `Age_group` != '-')),
-               nrow(filter(steds, Gender != '-')),
-               0)
+                  nrow(filter(steds, `Age_group` != '-')),
+                  nrow(filter(steds, Gender != '-')),
+                  0)
     mercksmanual <- c(nrow(mercks),
-               nrow(filter(mercks, `Age_group` != '-')),
-               nrow(filter(mercks, Gender != '-')), 
-               0)
+                      nrow(filter(mercks, `Age_group` != '-')),
+                      nrow(filter(mercks, Gender != '-')), 
+                      0)
     overlap <- c((nrow(steds) + nrow(mercks) - nrow(by_TN)),
-                  (nrow(filter(steds, `Age_group` != '-')) + nrow(filter(mercks, `Age_group` != '-')) - nrow(filter(by_TN, `Age_group` != '-'))),
-                  (nrow(filter(steds, Gender != '-')) + nrow(filter(mercks, Gender != '-')) - nrow(filter(by_TN, Gender != '-'))), 0)
+                 (nrow(filter(steds, `Age_group` != '-')) + nrow(filter(mercks, `Age_group` != '-')) - nrow(filter(by_TN, `Age_group` != '-'))),
+                 (nrow(filter(steds, Gender != '-')) + nrow(filter(mercks, Gender != '-')) - nrow(filter(by_TN, Gender != '-'))), 0)
     rangs <- c(135, 0, 135, 135)
     
     df <- data.frame("Stratifications" = stratifications, 
@@ -80,7 +85,7 @@ server <- function(input, output) {
                             "Gender" = numeric(),
                             "Low"= numeric(),
                             "High" = numeric()
-                            )
+    )
     
     #for loop setup
     Label <- ""
@@ -205,7 +210,7 @@ server <- function(input, output) {
     
     
   })
- 
+  
   #DATA TABLE - RIs
   output$table <- renderDataTable({
     tryCatch({
@@ -232,5 +237,4 @@ server <- function(input, output) {
     content = function(file) { write.csv(ranges_df(), file)}
   )
   
-}
-#end
+}#end
